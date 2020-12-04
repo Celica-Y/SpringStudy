@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+
+<div class="sum">
+	<h1 th:text="${explain}">階乗の計算をします。</h1>
+
+</div>
+	
+<form action="/day20" method="post">
+	<label>階乗したい値を入れてください</label><input type="text" name="sumText">
+	<input type="submit",value="送信">
+</form>
+
+</body>
+</html>

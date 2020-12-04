@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="content-type" charset="UTF-8">
+	<title>タイトル</title>
+</head>
+<body>
+	<h1>サイト名</h1>
+
+	<div class="profile">
+		<h1>プロフィール</h1>
+		<!--thはpom.xmlのthymeleafの略で、これの機能を用い、Javaでテキストを書き換えることができる-->
+		<h2 th:text="${name}">佐藤HTML太郎</h2>
+		<h2 th:text="${age}">35歳</h2>
+		<h2 th:text="${height}">207cm</h2>
+	</div>
+	
+	<form action="/" method="post">
+		<label>名前</label><input type="text" name="nameVal" th:value="${name}">
+		<label>年齢</label><input type="text" name="ageVal" th:value="${age}">
+		<label>身長</label><input type="text" name="heightVal" th:value="${height}">
+		<input type="submit",value="送信">
+	</form>
+	
+	<form action="/test" method="post">
+		<label>名前</label><input type="text" name="nameLabel" th:value="${name}">
+		<label>年齢</label><input type="text" name="ageLabel" th:value="${age}">
+		<label>身長</label><input type="text" name="heightLabel" th:value="${height}">
+		<input type="submit",value="送信">
+	</form>
+</body>
+</html>
