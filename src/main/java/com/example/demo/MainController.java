@@ -75,8 +75,22 @@ public ModelAndView sumPost(ModelAndView mv,
     for(int i=1; i<=factorial; i++){
         fact = fact * i;
     }
-			mv.addObject("explain",factorial+"の階乗は"+fact+"です");
-			mv.setViewName("Day20Homework"); 
-			return mv;
-		}
+	mv.addObject("explain",factorial+"の階乗は"+fact+"です");
+	mv.setViewName("Day20Homework"); 
+	return mv;
+	}
+
+//ifStudy
+@RequestMapping(value="/if", method=RequestMethod.GET)
+public ModelAndView ifGet(ModelAndView mv) {
+	mv.addObject("suzuki",false);
+	mv.setViewName("ifStudy"); 
+	return mv;
+}
+@RequestMapping(value="/if", method=RequestMethod.POST)
+public ModelAndView ifPost(ModelAndView mv) {
+	mv.addObject("suzuki",true);
+	mv.setViewName("ifStudy"); 
+	return mv;
+	}
 }
