@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<link th:href="@{/css/mouseStyle.css}" rel="stylesheet">
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>mouseGame</title>
+</head>
+
+<body>
+	<h1>ネズミをゲージに追加する？</h1>
+		
+	<form action="/mouse" method="POST">
+	<div><p>ネズミは仲間になりたそうな目でこちらを見ている</p></div>
+		<input type="submit" name="animal" value="追加する！"/>
+	</form>	
+	
+	
+	<div th:if="${click}" >
+		<p th:text="${txt}">ネズミが追加された！</p>
+		<img th:src="@{/image/nezumi_three_5522.png.jpg}" alt="image" width="400px">
+	</div>
+	
+
+</body>
+</html>

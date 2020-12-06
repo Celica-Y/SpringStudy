@@ -1,6 +1,8 @@
 package com.example.demo;
 
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,4 +95,25 @@ public ModelAndView ifPost(ModelAndView mv) {
 	mv.setViewName("ifStudy"); 
 	return mv;
 	}
+
+//ネズミ追加ゲーム
+@RequestMapping(value="/mouse", method=RequestMethod.GET)
+public ModelAndView mouseGet(ModelAndView mv) {
+	mv.addObject("click", false);
+	mv.setViewName("mouseGame"); 
+	return mv;
+}
+
+@RequestMapping(value="/mouse", method=RequestMethod.POST)
+public ModelAndView mousePost(ModelAndView mv){
+	mv.addObject("click", true);
+	
+	int x = (int) Math.random();
+	 x = (int)(Math.random() * 1000);
+	 
+	 mv.addObject("txt",x+"匹のネズミが追加された");
+	mv.setViewName("mouseGame"); 
+	return mv;
+}
+
 }
