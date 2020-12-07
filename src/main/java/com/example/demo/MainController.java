@@ -1,12 +1,20 @@
 package com.example.demo;
 
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import ch.qos.logback.classic.Logger;
 
 //アノテーションの効果を取得している。これは、コントローラーの効果
 @Controller
@@ -96,6 +104,29 @@ public ModelAndView ifPost(ModelAndView mv) {
 	return mv;
 	}
 
+//ラジオボタン 練習
+@RequestMapping(value="/ragio", method=RequestMethod.GET)
+public String hello(Model model) {
+    model.addAttribute("click", false);
+    model.addAttribute("message", "please click!");
+    return "ragio";
+}
+
+@RequestMapping(value="/ragio", method=RequestMethod.POST)
+public String click(@RequestParam("animal")String animal, Model model) {
+    model.addAttribute("click", true);
+
+    if("dog".equals(animal)){
+        model.addAttribute("chosenAnimal", 1);
+    }else if("cat".equals(animal)){
+        model.addAttribute("chosenAnimal", 2);
+    }else if("rabbit".equals(animal)){
+        model.addAttribute("chosenAnimal", 3);
+    }
+
+    return "ragio";
+}
+
 //ネズミ追加ゲーム
 @RequestMapping(value="/mouse", method=RequestMethod.GET)
 public ModelAndView mouseGet(ModelAndView mv) {
@@ -109,9 +140,9 @@ public ModelAndView mousePost(ModelAndView mv){
 	mv.addObject("click", true);
 	
 	int x = (int) Math.random();
-	 x = (int)(Math.random() * 1000);
-	 
-	 mv.addObject("txt",x+"匹のネズミが追加された");
+	x = (int)(Math.random() * 100);
+	
+	mv.addObject("txt",x+"匹のネズミが追加された!");
 	mv.setViewName("mouseGame"); 
 	return mv;
 }
