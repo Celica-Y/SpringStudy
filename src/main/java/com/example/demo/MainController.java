@@ -136,15 +136,23 @@ public ModelAndView mouseGet(ModelAndView mv) {
 }
 
 @RequestMapping(value="/mouse", method=RequestMethod.POST)
-public ModelAndView mousePost(ModelAndView mv){
-	mv.addObject("click", true);
+public ModelAndView mousePost(ModelAndView mv,
+		@RequestParam("choice")String choice) {
+	mv.addObject("click",true);
+		
+	 if("add".equals(choice)){
+	        mv.addObject("choice", 1);
+	        
+	        int x = (int) Math.random();
+	        x = (int)(Math.random() * 100);
+	        
+	        mv.addObject("txt",x+"匹のネズミが追加された!");
+	    }else if("no".equals(choice)){
+	        mv.addObject("choice", 2);
+	    }
+	 mv.setViewName("mouseGame"); 
+	 return mv;
 	
-	int x = (int) Math.random();
-	x = (int)(Math.random() * 100);
-	
-	mv.addObject("txt",x+"匹のネズミが追加された!");
-	mv.setViewName("mouseGame"); 
-	return mv;
 }
 
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Hello Thymeleaf</title>
+</head>
+<body>
+    <div th:unless="${click}">
+        <p th:text="${message}">please wait...</p>
+            <form method="post" action="/ragio">
+                <input type="radio" name="animal" value="dog"/>dog
+                <input type="radio" name="animal" value="cat"/>cat
+                <input type="radio" name="animal" value="rabbit"/>rabbit
+                <input type="submit" value="Click" />
+            </form>
+    </div>
+    <div th:if="${click}" th:switch="${chosenAnimal}">
+            <p th:case ="1">わん</p>
+            <p th:case ="2">にゃん</p>
+            <p th:case ="3">...?</p>
+    </div>
+    
+    <!-- コピペ元：https://www.casleyconsulting.co.jp/blog/engineer/284/ -->
+</body>
+</html>

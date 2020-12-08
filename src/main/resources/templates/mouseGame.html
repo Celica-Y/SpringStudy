@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-	<html xmlns:th="http://www.thymeleaf.org">
-	<link th:href="@{/css/mouseStyle.css}" rel="stylesheet">
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/mouseStyle.css}" rel="stylesheet">
 
 <head>
 	<meta charset="UTF-8">
@@ -11,17 +10,30 @@
 <body>
 	<h1>ネズミをゲージに追加する？</h1>
 		
-	<form action="/mouse" method="POST">
+	
 	<div><p>ネズミは仲間になりたそうな目でこちらを見ている</p></div>
-		<input type="submit" name="animal" value="追加する！"/>
-	</form>	
 	
+	<!-- <div th:if="${click}" >
+		<p th:text="${txt}"></p>
+		<img th:src="@{/image/nezumi_three_5522.png}" alt="image" width="400px">
+	</div> -->
 	
-	<div th:if="${click}" >
-		<p th:text="${txt}">ネズミが追加された！</p>
-		<img th:src="@{/image/nezumi_three_5522.png.jpg}" alt="image" width="400px">
-	</div>
-	
+	  <div th:unless="${click}">
+        <!-- <p>ネズミは仲間になりたそうな目でこちらを見ている</p> -->
+            <form method="post" action="/mouse">
+                <input type="radio" name="choice" value="add"/>追加する！
+                <input type="radio" name="choice" value="no"/>やめる
+                <input type="submit" value="Click" />
+            </form>
+    </div>
+    <div th:if="${click}" th:switch="${choice}">
+ 
+		<div th:case ="1"> 
+		<p th:text="${txt}"></p>
+		<img th:src="@{/image/nezumi_three_5522.png}" alt="image" width="400px">
+		</div>
+         <div th:case ="2">ネズミは逃げていった・・・</div>
+    </div>
 
 </body>
 </html>
