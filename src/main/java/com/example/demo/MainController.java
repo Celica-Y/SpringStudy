@@ -1,6 +1,7 @@
 package com.example.demo;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -155,6 +156,7 @@ public ModelAndView mousePost(ModelAndView mv,
 	 return mv;
 }
 
+//name.html　Day21　p.13~14
 @RequestMapping("/{name}/{age}")
 public ModelAndView index(@PathVariable String name,
 		@PathVariable int age ,ModelAndView mv) {
@@ -162,5 +164,18 @@ public ModelAndView index(@PathVariable String name,
 	mv.addObject("age","私の年齢は"+ age + "です");
 	mv.setViewName("name");
 	return mv;
+}
+//day21課題
+
+//Day22繰り返し表示
+@RequestMapping(value="/day22", method=RequestMethod.GET)
+	public ModelAndView indexPost(ModelAndView mv){
+ArrayList<String[]> customers = new ArrayList<String[]>();
+customers.add(new String[] {"佐藤HTML太郎","35歳","男性"});
+customers.add(new String[] {"鈴木Java五郎","24歳","男性"});
+customers.add(new String[] {"高橋CSS子","29歳","女性"});
+mv.addObject("customers", customers);
+mv.setViewName("Day22Each");
+return mv;
 }
 }
