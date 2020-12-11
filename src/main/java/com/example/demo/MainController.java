@@ -165,10 +165,28 @@ public ModelAndView index(@PathVariable String name,
 	mv.setViewName("name");
 	return mv;
 }
+
 //day21課題
+@RequestMapping("/day21/{num}")
+public ModelAndView Day21(@PathVariable int num ,ModelAndView mv) {
+	int i;
+	for(i=2; i*i<=num; i++) {
+		if(num%i==0)
+		break;
+	}
+	mv.addObject("num",num + "は素数ではありません・・・");
+	
+	if(i*i>num) {
+		mv.addObject("num",num + "は素数です！");
+	}
+
+	mv.setViewName("DAy21Homework");
+	return mv;
+}
 
 //Day22繰り返し表示
 @RequestMapping(value="/day22", method=RequestMethod.GET)
+//method=RequestMethod.GETが資料状には書いてなかったが、エラーで表示されないので書いた
 	public ModelAndView indexPost(ModelAndView mv){
 ArrayList<String[]> customers = new ArrayList<String[]>();
 customers.add(new String[] {"佐藤HTML太郎","35歳","男性"});
