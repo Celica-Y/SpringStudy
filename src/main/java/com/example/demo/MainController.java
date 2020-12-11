@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -154,4 +155,12 @@ public ModelAndView mousePost(ModelAndView mv,
 	 return mv;
 }
 
+@RequestMapping("/{name}/{age}")
+public ModelAndView index(@PathVariable String name,
+		@PathVariable int age ,ModelAndView mv) {
+	mv.addObject("name","私の名前は"+ name + "です");
+	mv.addObject("age","私の年齢は"+ age + "です");
+	mv.setViewName("name");
+	return mv;
+}
 }
