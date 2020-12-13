@@ -186,12 +186,13 @@ public ModelAndView Day21(@PathVariable int num ,ModelAndView mv) {
 
 //Day22繰り返し表示
 @RequestMapping(value="/day22", method=RequestMethod.GET)
-//method=RequestMethod.GETが資料状には書いてなかったが、エラーで表示されないので書いた
 	public ModelAndView indexPost(ModelAndView mv){
 ArrayList<String[]> customers = new ArrayList<String[]>();
-customers.add(new String[] {"佐藤HTML太郎","35歳","男性"});
-customers.add(new String[] {"鈴木Java五郎","24歳","男性"});
-customers.add(new String[] {"高橋CSS子","29歳","女性"});
+customers.add(new String[] {"佐藤HTML太郎","35歳","男性","北海道"});
+customers.add(new String[] {"鈴木Java五郎","24歳","男性","青森"});
+customers.add(new String[] {"高橋CSS子","29歳","女性","岩手"});
+customers.add(new String[] {"田中","30歳","男性","埼玉"});
+customers.add(new String[] {"春日部","14歳","女性","沖縄"});
 mv.addObject("customers", customers);
 mv.setViewName("Day22Each");
 return mv;
