@@ -2,21 +2,19 @@ package com.example.demo;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ch.qos.logback.classic.Logger;
+import java.util.List;
+
 
 //アノテーションの効果を取得している。これは、コントローラーの効果
 @Controller
@@ -186,7 +184,7 @@ public ModelAndView Day21(@PathVariable int num ,ModelAndView mv) {
 
 //Day22繰り返し表示
 @RequestMapping(value="/day22", method=RequestMethod.GET)
-	public ModelAndView indexPost(ModelAndView mv){
+	public ModelAndView indexG(ModelAndView mv){
 ArrayList<String[]> customers = new ArrayList<String[]>();
 customers.add(new String[] {"佐藤HTML太郎","35歳","男性","北海道"});
 customers.add(new String[] {"鈴木Java五郎","24歳","男性","青森"});
@@ -197,4 +195,23 @@ mv.addObject("customers", customers);
 mv.setViewName("Day22Each");
 return mv;
 }
+
+//Day23
+@Autowired
+UserDataRepository repository;
+
+@RequestMapping(value="/day23", method=RequestMethod.GET)
+public ModelAndView Day23Get(ModelAndView mv){
+	List<UserData> customers = repository.findAll();
+	mv.addObject("customers", customers);
+	mv.setViewName("data");
+	return mv;
+}
+@RequestMapping(value="/day23", method=RequestMethod.POST)
+public ModelAndView Day23Post(@ModelAttribute("formModel") UserData
+userData, ModelAndView mv) {
+	repository.saveAndFlush(userData);
+	return new ModelAndView("redirect:/day23");
+	}
+
 }
