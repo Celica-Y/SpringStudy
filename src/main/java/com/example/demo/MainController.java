@@ -208,10 +208,31 @@ public ModelAndView Day23Get(ModelAndView mv){
 	return mv;
 }
 @RequestMapping(value="/day23", method=RequestMethod.POST)
-public ModelAndView Day23Post(@ModelAttribute("formModel") UserData
-userData, ModelAndView mv) {
+public ModelAndView Day23Post(@ModelAttribute("formModel") UserData userData,
+		ModelAndView mv) {
+//	手動でもデータベースが作れる
+//	UserData u = new UserData();
+//	u.getMail();
 	repository.saveAndFlush(userData);
 	return new ModelAndView("redirect:/day23");
+	}
+
+//課題1−1
+@Autowired
+day23Repository Repo;
+
+@RequestMapping(value="/day23r", method=RequestMethod.GET)
+public ModelAndView DayGet(ModelAndView mv){
+	List<day23UserData> customers = Repo.findAll();
+	mv.addObject("customers", customers);
+	mv.setViewName("day23date");
+	return mv;
+}
+@RequestMapping(value="/day23r", method=RequestMethod.POST)
+public ModelAndView DayPost(@ModelAttribute("formModel") day23UserData userData,
+		ModelAndView mv) {
+	Repo.saveAndFlush(userData);
+	return new ModelAndView("redirect:/day23r");
 	}
 
 }
