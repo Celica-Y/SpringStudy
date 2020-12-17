@@ -36,7 +36,6 @@ public class day23UserData {
 	public void setMail(String mail) { this.mail = mail; }
 	
 	public int getAge() { return age; }
-	
 	public void setAge(int age) { this.age = age-3; }
 	
 	public String getPass() { return pass; }

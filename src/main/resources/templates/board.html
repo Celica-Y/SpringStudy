@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	 <link th:href="@{/css/Style.css}" rel="stylesheet">
+	<title>day23　課題３　掲示板</title>
+</head>
+<body>
+	<h1>掲示板</h1>
+	<form id="style" method="post" action="/board" th:object="${form}">
+		<ul>
+			<li><label>名前:</label><input type="text" name="name" value="名無しの冒険者"></li>
+		<li>
+			<p>投稿文:</p><textarea name="text" rows="4" cols="40"></textarea>
+		</li>
+		<input type="submit" value="投稿">
+	</ul>
+	</form>
+	
+	<h2>投稿一覧</h2>
+	<table>
+	<tr th:each="c:${customers}">
+		<td th:text="${c.id}" style="border-right: 1px solid #bbb;border-bottom: 1px solid #bbb;"></td>
+		<td th:text="${c.name}" style="border-right: 1px solid #bbb;border-bottom: 1px solid #bbb;"></td>
+		<td th:text="${c.time}" style="border-right: 1px solid #bbb;border-bottom: 1px solid #bbb;"></td>
+		<td th:text="${c.text}" style="border-right: 1px solid #bbb;border-bottom: 1px solid #bbb;"></td>
+	</tr>
+	</table>
+</body>
+</html>

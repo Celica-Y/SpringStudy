@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
-.sum{
-color: olivedrab;
+#style ul li{
+	list-style: none;
 }

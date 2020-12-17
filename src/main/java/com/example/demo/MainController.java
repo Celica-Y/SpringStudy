@@ -1,7 +1,7 @@
 package com.example.demo;
 
-
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -217,7 +217,7 @@ public ModelAndView Day23Post(@ModelAttribute("formModel") UserData userData,
 	return new ModelAndView("redirect:/day23");
 	}
 
-//課題1−1
+//課題1−1、1ー2
 @Autowired
 day23Repository Repo;
 
@@ -233,6 +233,31 @@ public ModelAndView DayPost(@ModelAttribute("formModel") day23UserData userData,
 		ModelAndView mv) {
 	Repo.saveAndFlush(userData);
 	return new ModelAndView("redirect:/day23r");
+	}
+
+//課題2
+@Autowired
+boardRepository ripositry;
+
+@RequestMapping(value="/board", method=RequestMethod.GET)
+public ModelAndView boardGet(ModelAndView mv){
+	List<boardUserData> customers = ripositry.findAll();
+	mv.addObject("customers", customers);
+	mv.setViewName("board");
+	return mv;
+}
+
+@RequestMapping(value="/board", method=RequestMethod.POST)
+public ModelAndView boardPost(@ModelAttribute("form") boardUserData userData,
+		ModelAndView mv) {
+	
+	boardUserData u = new boardUserData();
+	u.getTime();
+	u.setTime(null);
+	
+	
+	ripositry.saveAndFlush(userData);
+	return new ModelAndView("redirect:/board");
 	}
 
 }
