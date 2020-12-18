@@ -18,7 +18,8 @@ public class boardUserData {
 	private String text;
 	
 	@Column
-	Date time =new Date();
+	private String time;
+//	A.日時取得をここで行うには、Date time =new Date();を定義
 
 	public long getId() { return id; }
 	public void setId(long id) { this.id = id; }
@@ -26,9 +27,9 @@ public class boardUserData {
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }
 	
-	public Date getTime() { return time; }
-	public void setTime(Date time) { this.time = time; }
-	
+	public String getTime() { return time; }
+	public void setTime(String time) { this.time = time; }
+//　A.データ型にする。	
 	public String getText() { return text; }
 	public void setText(String text) { this.text = text; }
 	

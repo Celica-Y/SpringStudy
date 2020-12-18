@@ -250,11 +250,27 @@ public ModelAndView boardGet(ModelAndView mv){
 @RequestMapping(value="/board", method=RequestMethod.POST)
 public ModelAndView boardPost(@ModelAttribute("form") boardUserData userData,
 		ModelAndView mv) {
+//	手動で日時を取得する
+//	Date time =new Date();
+//	↓はuserDataに取得したタイムをセットして送った。
+//	userData.setTime(time);
 	
+//	ゲットの使いかた。
+//	String s = userData.getText();	
+//	System.out.print(s);
+
+//	手動でデータを保存。↓は新しくデータを入れるところを作った
 	boardUserData u = new boardUserData();
-	u.getTime();
-	u.setTime(null);
-	
+//	変数に入れたいデータを入れる
+	String a ="卵";
+	String b ="今晩";
+	String c = "2019.5.5";
+//	新しく作ったuがインスタンスにアクセスする。そしてデータをセット（入れただけ）
+	u.setName(a);
+	u.setText(b);
+	u.setTime(c);
+//	uに保存保存
+	ripositry.saveAndFlush(u);
 	
 	ripositry.saveAndFlush(userData);
 	return new ModelAndView("redirect:/board");
