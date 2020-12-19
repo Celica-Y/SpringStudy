@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 
 //アノテーションの効果を取得している。これは、コントローラーの効果
@@ -274,6 +275,51 @@ public ModelAndView boardPost(@ModelAttribute("form") boardUserData userData,
 	
 	ripositry.saveAndFlush(userData);
 	return new ModelAndView("redirect:/board");
+	}
+
+//day24
+@Autowired
+UserDataRepository reposi;
+
+@RequestMapping(value="/day24/", method=RequestMethod.GET)
+public ModelAndView Day24Get(ModelAndView mv){
+	List<UserData> customer = reposi.findAll();
+	mv.addObject("customer", customer);
+	mv.setViewName("day24Entry");
+	return mv;
+}
+@RequestMapping(value="/day24/", method=RequestMethod.POST)
+public ModelAndView Day24Post(@ModelAttribute("formModel") UserData userData,
+		ModelAndView mv) {
+	reposi.saveAndFlush(userData);
+	return new ModelAndView("redirect:/day24/");
+	}
+
+//day24
+@RequestMapping(value="/mypage/{id}", method=RequestMethod.GET)
+public ModelAndView myPage(@ModelAttribute UserData userData,
+		ModelAndView mv, @PathVariable long id) {
+//p6~9 p.19
+	Optional <UserData> user = repository.findById(id);
+	mv.addObject("userData", user.get());
+	
+//	上の「@PathVariable long id」はいらない
+//	List <UserData> user = repository.findByIdIsNotNullOrderByIdDesc();
+//	mv.addObject("user", user);
+	
+	mv.setViewName("mypage");
+	return mv;
+}
+@RequestMapping(value="/mypage/", method=RequestMethod.POST)
+public ModelAndView mypagePost(@ModelAttribute UserData userData,
+	ModelAndView mv) {
+	reposi.saveAndFlush(userData);
+	return new ModelAndView("redirect:/day24/");
+	}
+@RequestMapping(value="/delete/", method=RequestMethod.POST)
+public ModelAndView delete( @RequestParam("id") long id, ModelAndView mv) {
+	reposi.deleteById(id);
+	return new ModelAndView("redirect:/day24/");
 	}
 
 }

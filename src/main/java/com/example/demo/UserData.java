@@ -14,8 +14,8 @@ public class UserData {
 	@Column(length = 50, nullable = false)
 	private String mail;
 	
-	@Column(nullable = false)
-	private String pass;
+	@Column(length = 10,nullable = false)
+	private long password;
 	
 	
 	public long getId() { return id; }
@@ -27,6 +27,6 @@ public class UserData {
 	public String getMail() { return mail; }
 	public void setMail(String mail) { this.mail = mail; }
 	
-	public String getPass() { return pass; }
-	public void setPass(String pass) { this.pass = pass; }
+	public long getPassword() { return password; }
+	public void setPassword(long password) { this.password = password; }
 }
