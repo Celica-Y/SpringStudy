@@ -295,7 +295,6 @@ public ModelAndView Day24Post(@ModelAttribute("formModel") UserData userData,
 	return new ModelAndView("redirect:/day24/");
 	}
 
-//day24
 @RequestMapping(value="/mypage/{id}", method=RequestMethod.GET)
 public ModelAndView myPage(@ModelAttribute UserData userData,
 		ModelAndView mv, @PathVariable long id) {
