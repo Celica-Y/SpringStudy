@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table
 public class UserData {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO) @Column 
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column 
 	private long id;
 	
 	@Column(length = 20, nullable = false)
