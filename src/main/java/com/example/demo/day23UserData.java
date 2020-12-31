@@ -8,21 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="day23data")
 public class day23UserData {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO) @Column 
+	@Id @GeneratedValue(strategy = GenerationType.AUTO) 
+	@Column(name="id") 
 	private long id;
 	
-	@Column(length = 20, nullable = false)
+	@Column(name = "name", length = 20, nullable = false)
 	private String name;
 	
-	@Column(length = 50, nullable = false)
+	@Column(name = "mail", length = 50, nullable = false)
 	private String mail;
 	
-	@Column(nullable = false)
+	@Column(name = "pass", nullable = false)
 	private String pass;
 	
-	@Column(length = 3, nullable = false)
+	@Column(name = "age", length = 3, nullable = false)
 	private int age;
 	
 	
