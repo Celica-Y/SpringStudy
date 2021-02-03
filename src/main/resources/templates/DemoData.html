@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザーデータ一覧</title>
+</head>
+<body>
+ 	<form method="post" action="/user" th:object="${form}">
+		<h1>登録</h1>
+		<label>コメント</label><input type="text" name="comment">
+		<input type="submit" name="登録">
+	</form>
+	
+	<h1>一覧</h1>
+	<!-- <table>
+	<tr><th>id</th><th>名前</th></tr>
+	<tr th:each="u:${userData}">
+		<td th:text="${u.id}"></td>
+		<td th:text="${u.user}"></td>
+	</tr>  -->
+	
+	<h2>コメントのデータ</h2>
+	<table>
+	<tr><th>id</th><th>名前</th></tr>
+	<tr th:each="data:${userD}">
+		<td>[[${data.id}]]</td>
+		<td> [[${data.comment}]]</td>
+	</tr> 
+	</table>
+	
+	<table>
+		<tr><th>名前のid</th></tr>
+		<tr th:each="item:${commentList}" >
+		<!-- データが入っているかどうか null出るやつ-->
+		<td th:text="|commentList[${item.userId}]|"></td>
+		
+	</tr> 
+	</table>
+	
+</body>
+</html>

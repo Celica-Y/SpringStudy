@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" action="/u" th:object="${model}">
+		<h1>登録</h1>
+		<label>名前</label><input type="text" name="user">
+		<input type="submit" name="登録">
+	</form>
+	
+	<table>
+	<tr><th>id</th><th>名前</th></tr>
+	<tr th:each="u:${uData}">
+		<td th:text="${u.id}"></td>
+		<td th:text="${u.user}"></td>
+	</tr> 
+</body>
+</html>

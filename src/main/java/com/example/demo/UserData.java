@@ -13,7 +13,7 @@ public class UserData {
 	@Column(name = "name", length = 20, nullable = false)
 	private String name;
 	
-	@Column(name = "mail", length = 50, nullable = false)
+	@Column(name = "mail", length = 20, nullable = false)
 	private String mail;
 	
 	@Column(name ="pass", length = 10,nullable = false)
