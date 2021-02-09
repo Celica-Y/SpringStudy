@@ -1,6 +1,8 @@
 package com.example.demo;
 
 
-public interface UserDao{
+public interface UserDao {
 	MyUser findUserByUserName(String userName);
+	
+	
 }

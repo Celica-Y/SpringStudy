@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -18,7 +19,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	   @Autowired
 	    AccountUserDetailsService userDetailsService;
 
-	   PasswordEncoder passwordEncoder() {
+	   @Bean
+	   public PasswordEncoder passwordEncoder() {
 	        //BCryptアルゴリズムを使用してパスワードのハッシュ化を行う
 	        return new BCryptPasswordEncoder(); // BCryptアルゴリズムを使用
 	    }
@@ -37,8 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	                .accessDeniedPage("/accessDeniedPage")  // アクセス拒否された時に遷移するパス
 	            .and()
 	            .authorizeRequests()
-	                .antMatchers("/loginForm").permitAll()  // /loginFormは、全ユーザからのアクセスを許可
-	                .anyRequest().authenticated();          // /loginForm以外は、認証を求める
+	                .antMatchers("/loginForm","/Form","/").permitAll()  // /loginFormは、全ユーザからのアクセスを許可
+	                .anyRequest().authenticated();          //  上記以外は、認証を求める
 
 	        // ログイン設定
 	        http.formLogin()                                // フォーム認証の有効化

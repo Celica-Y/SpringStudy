@@ -1,11 +1,7 @@
 package com.example.demo;
 
 import java.util.ArrayList;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -338,5 +334,36 @@ public String home() {
 public String accessDeniedPage() {
     return "accessDeniedPage";
 }
+
+
+@Autowired
+MyUserRepositry myRipositry;
+@Autowired
+AccountService accountService;
+
+@RequestMapping(value="/Form", method=RequestMethod.GET)
+public ModelAndView FormGET(ModelAndView mv) {
+	mv.setViewName("Form");
+	return mv;
+	}
+
+@RequestMapping(value="/Form", method=RequestMethod.POST)
+public ModelAndView createPost(
+//		@ModelAttribute("create") MyUser myUser,
+		ModelAndView mv) {
+//Formから受け取ったデータをAccountServiceでハッシュ化して登録したい
+		System.out.print("A");
+//		MyUser account = new MyUser();
+//
+//		account.setUserName(account.getUserName());
+//		account.setPassword(account.getPassword());
+//		アカウントサービスのクラスでハッシュ化
+//		accountService.registerMember(account);
+//		myRipositry.saveAndFlush(myUser);
+//		return new ModelAndView("redirect:/home");
+		mv.setViewName("Form");
+		return mv;
+		}
+
 
 }
