@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -330,6 +331,10 @@ public String loginForm() {
 public String home() {
     return "home";
 }
+//@PostMapping("/home")
+//public String h() {
+//    return "home";
+//}
 @GetMapping("/accessDeniedPage")
 public String accessDeniedPage() {
     return "accessDeniedPage";
@@ -349,20 +354,20 @@ public ModelAndView FormGET(ModelAndView mv) {
 
 @RequestMapping(value="/Form", method=RequestMethod.POST)
 public ModelAndView createPost(
-//		@ModelAttribute("create") MyUser myUser,
+		@ModelAttribute("create") MyUser myUser,
 		ModelAndView mv) {
 //Formから受け取ったデータをAccountServiceでハッシュ化して登録したい
 		System.out.print("A");
 //		MyUser account = new MyUser();
-//
+
 //		account.setUserName(account.getUserName());
 //		account.setPassword(account.getPassword());
 //		アカウントサービスのクラスでハッシュ化
 //		accountService.registerMember(account);
-//		myRipositry.saveAndFlush(myUser);
-//		return new ModelAndView("redirect:/home");
-		mv.setViewName("Form");
-		return mv;
+		myRipositry.saveAndFlush(myUser);
+		return new ModelAndView("redirect:/home");
+//		mv.setViewName("Form");
+//		return mv;
 		}
 
 
