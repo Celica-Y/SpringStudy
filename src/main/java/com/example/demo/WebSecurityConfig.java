@@ -55,8 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	        http.logout()
 	                .logoutSuccessUrl("/loginForm")         // ログアウト成功時に遷移するパス
 	                .permitAll();  // 全ユーザに対してアクセスを許可
-	        
-	        http.csrf().disable();
+
+	        http.csrf().disable();  //disableの呼び出し無効化。認証が必要なAPIなどがあるときには安易に使ってはいけない。
 	    }
 	    
 }

@@ -11,9 +11,9 @@ public class AccountService {
     @Autowired
     PasswordEncoder passwordEncoder;
  
-    public void  registerMember (MyUser myUser) {
-        
-        myUser.setPassword(passwordEncoder.encode(myUser.getPassword()));
-        myUserRepository.save(myUser);
+    public void  registerMember (MyUser myUser,String rawPassword) {
+    	String password = passwordEncoder.encode(rawPassword);
+    	 myUser.setPassword(password);
+         myUserRepository.saveAndFlush(myUser);
     }
 }

@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -356,15 +357,18 @@ public ModelAndView FormGET(ModelAndView mv) {
 public ModelAndView createPost(
 		@ModelAttribute("create") MyUser myUser,
 		ModelAndView mv) {
-//Formから受け取ったデータをAccountServiceでハッシュ化して登録したい
-		System.out.print("A");
-//		MyUser account = new MyUser();
-
-//		account.setUserName(account.getUserName());
-//		account.setPassword(account.getPassword());
-//		アカウントサービスのクラスでハッシュ化
-//		accountService.registerMember(account);
-		myRipositry.saveAndFlush(myUser);
+//	動きの確認したやつ
+//		System.out.print("A");
+//		myRipositry.saveAndFlush(myUser);	
+	
+//Formから受け取ったデータをAccountServiceでハッシュ化して登録
+		MyUser account = new MyUser();
+//		パスワード受け取ってアカウントにセット
+		account.setPassword(account.getPassword());
+		String Pass = account.getPassword();
+//		アカウントサービスのクラスでハッシュ化。
+//		accountService.registerMember(myUser,"A");
+		accountService.registerMember(myUser,Pass);
 		return new ModelAndView("redirect:/home");
 //		mv.setViewName("Form");
 //		return mv;
