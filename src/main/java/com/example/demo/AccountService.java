@@ -12,8 +12,12 @@ public class AccountService {
     PasswordEncoder passwordEncoder;
  
     public void  registerMember (MyUser myUser,String rawPassword) {
-    	String password = passwordEncoder.encode(rawPassword);
-    	 myUser.setPassword(password);
-         myUserRepository.saveAndFlush(myUser);
+//		コントローラから来たパスワードをハッシュ化
+    	String password = passwordEncoder.encode (rawPassword);
+    	
+//    	ハッシュ化したパスワードをセットして保存
+    	myUser.setPassword(password);
+        myUserRepository.saveAndFlush(myUser);
     }
+
 }
